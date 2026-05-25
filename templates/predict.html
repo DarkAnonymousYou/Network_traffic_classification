@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background: #fff;
+            color: #333;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .result {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff4500;
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff7f50, #ff6347);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .btn-group {
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 6px;
+            transition: background 0.3s, transform 0.2s;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .home-btn {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+        }
+        .home-btn:hover {
+            background: linear-gradient(135deg, #0056b3, #003d80);
+        }
+        .predict-btn {
+            background: linear-gradient(135deg, #28a745, #218838);
+        }
+        .predict-btn:hover {
+            background: linear-gradient(135deg, #218838, #19692c);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <div class="result">{{ result }}</div>
+        <div class="btn-group">
+            <a href="/" class="btn home-btn">Home</a>
+            <a href="/predict" class="btn predict-btn">Try Another Prediction</a>
+        </div>
+    </div>
+</body>
+</html>

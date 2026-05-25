@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Fields Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        form {
+            background: #fff;
+            color: #333;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 600px;
+        }
+        form h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        .tooltip {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            background: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            display: none;
+        }
+        input[type="text"]:hover ~ .tooltip {
+            display: block;
+        }
+        button {
+            width: calc(33.33% - 10px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            color: #fff;
+            transition: background 0.3s, transform 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        .predict-button {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+        }
+        .predict-button:hover {
+            background: linear-gradient(135deg, #0056b3, #003d80);
+        }
+        .reset-button {
+            background: linear-gradient(135deg, #ff7b00, #ff4500);
+        }
+        .reset-button:hover {
+            background: linear-gradient(135deg, #ff4500, #cc3700);
+        }
+        .other-button {
+            background: linear-gradient(135deg, #28a745, #218838);
+        }
+        .other-button:hover {
+            background: linear-gradient(135deg, #218838, #19692c);
+        }
+        .result {
+            margin-top: 30px;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff7f50, #ff6347);
+            color: blue;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .result h3 {
+            margin: 0;
+            font-size: 28px;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="networkFieldsForm" action="{{ url_for('predict') }}" method="post">
+            <h2>Network Fields Input Form</h2>
+            <div class="form-group">
+                <label for="sourcePort">Source Port</label>
+                <input type="text" id="sourcePort" name="sourcePort" required>
+                <div class="tooltip">Enter the source port number.</div>
+            </div>
+            <div class="form-group">
+                <label for="destinationPort">Destination Port</label>
+                <input type="text" id="destinationPort" name="destinationPort" required>
+                <div class="tooltip">Enter the destination port number.</div>
+            </div>
+            <div class="form-group">
+                <label for="natSourcePort">NAT Source Port</label>
+                <input type="text" id="natSourcePort" name="natSourcePort" required>
+                <div class="tooltip">Enter the NAT source port number.</div>
+            </div>
+            <div class="form-group">
+                <label for="natDestinationPort">NAT Destination Port</label>
+                <input type="text" id="natDestinationPort" name="natDestinationPort" required>
+                <div class="tooltip">Enter the NAT destination port number.</div>
+            </div>
+            <div class="form-group">
+                <label for="bytes">Bytes</label>
+                <input type="text" id="bytes" name="bytes" required>
+                <div class="tooltip">Enter the total bytes of data.</div>
+            </div>
+            <div class="form-group">
+                <label for="bytesSent">Bytes Sent</label>
+                <input type="text" id="bytesSent" name="bytesSent" required>
+                <div class="tooltip">Enter the bytes sent.</div>
+            </div>
+            <div class="form-group">
+                <label for="bytesReceived">Bytes Received</label>
+                <input type="text" id="bytesReceived" name="bytesReceived" required>
+                <div class="tooltip">Enter the bytes received.</div>
+            </div>
+            <div class="form-group">
+                <label for="packets">Packets</label>
+                <input type="text" id="packets" name="packets" required>
+                <div class="tooltip">Enter the total number of packets.</div>
+            </div>
+            <div class="form-group">
+                <label for="elapsedTime">Elapsed Time (sec)</label>
+                <input type="text" id="elapsedTime" name="elapsedTime" required>
+                <div class="tooltip">Enter the elapsed time in seconds.</div>
+            </div>
+            <div class="form-group">
+                <label for="pktsSent">Packets Sent</label>
+                <input type="text" id="pktsSent" name="pktsSent" required>
+                <div class="tooltip">Enter the packets sent.</div>
+            </div>
+            <div class="form-group">
+                <label for="pktsReceived">Packets Received</label>
+                <input type="text" id="pktsReceived" name="pktsReceived" required>
+                <div class="tooltip">Enter the packets received.</div>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="predict-button">Predict</button>
+                <button type="button" class="reset-button">Reset</button>
+
+        
+            </div>
+        </form>
+    </div>
+</body>
+</html>
