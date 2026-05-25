@@ -3,9 +3,8 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import mutual_info_score
 import numpy as np
 from sklearn.utils.validation import check_X_y, check_array
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import pandas as pd
-from sklearn.metrics import accuracy_score, classification_report,confusion_matrix
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import LabelEncoder
 
@@ -145,8 +144,8 @@ if __name__ == "__main__":
 
 
     #-----------Export the model-------------------------------------------------------------
-# import dill
+    import dill
 
-# # Save the model
-# with open('hybrid_model.pkl', 'wb') as file:
-#     dill.dump(hybrid_model, file)
+    # Save the model
+    with open('hybrid_model.pkl', 'wb') as file:
+        dill.dump(hybrid_model, file)
